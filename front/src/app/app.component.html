@@ -1,0 +1,10 @@
+<div class="container-main d-flex flex-column">
+<app-navbar (inputSearch)="getInput($event)"> </app-navbar>
+<!--<app-movies
+    [movieList]="initialDatas"
+    [searchMovie]="inputDataFromNav"
+></app-movies>
+-->
+<router-outlet></router-outlet>
+</div>
+

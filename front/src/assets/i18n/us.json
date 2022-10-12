@@ -1,0 +1,18 @@
+{
+    "SEARCH_MOVIE" : "Search a movie ...",
+    "NAME" : "Name",
+    "YEAR" : "Year",
+    "DURATION" : "Duration",
+    "IS_ADULT" : "Adult",
+    "ICON_POSTER" : "Icon poster",
+    "ICON_SEARCH": "Icon search",
+    "ICON_MODIFY" : "Icon modify",
+    "EDITING" : "Editing",
+    "ICON_CLOSE" : "Icon close",
+    "ICON_FRANCE" : "Icon flagFrance",
+    "ICON_USA" : "Icon flag USA",
+    "ICON_SCROLL" : "Icon to scroll top",
+    "ADULT_YES" : "Oui",
+    "ADULT_NO" : "Non",
+    "BUTTON_CANCEL" : "Annuler"
+}

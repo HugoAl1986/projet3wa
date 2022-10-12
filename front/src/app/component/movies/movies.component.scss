@@ -1,0 +1,152 @@
+@import "../../sass/variables_custom";
+@import"../../sass/custom_button";
+@import "../../../../node_modules/bootstrap/scss/variables";
+.navbar{
+    padding:0;
+}
+
+.bg-gradient{
+    background-image: $gradient;
+}
+
+.card-movie{
+    box-shadow: $shadow;
+    height:160px;  
+}
+
+.card-title{
+    flex-grow: 4;
+    padding-left:10px;
+    flex-basis:90%;
+    h3{
+        font-size:18pt;
+        font-weight: $font-weight-normal;
+    }
+    p{
+        font-size:12pt;
+        font-style: italic;
+        font-weight: $font-weight-thin;
+    }
+}
+.card-header{
+    button{
+        all:unset;
+        cursor:pointer;
+        height:fit-content;
+    } 
+    img{
+        flex-grow:1;
+        height:15px;
+    }
+}
+.card-content{
+    flex-grow:4;
+    .col-2{
+        flex-basis: fit-content;
+    }
+    .card-datas{
+        span:first-child{
+            font-weight:$font-weight-thin;
+            font-size:11pt;
+            background-color:$bg-color-grey;
+
+        }
+        span:not(:first-child){
+            font-weight:$font-weight-light;
+            font-size:10pt;
+        }   
+    }
+    
+}
+.card-picture{
+    padding: 0 10px;
+    background-color:$bg-color-grey;
+}
+.my-pagination ::ng-deep {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    nav{
+        display:flex;
+        ul{
+            margin:1rem 0;
+        }
+    }
+    .pagination-previous a:before,.pagination-next a:after, .ngx-pagination .disabled:before,.ngx-pagination .disabled:after {
+        content:'';
+    }
+    .ngx-pagination{
+        .pagination-next a, .pagination-previous a{
+            color:black !important;
+        }
+        .current{
+            background-color:inherit;
+            color:black;
+        }
+        a:not([href]):not([class]), a:not([href]):not([class]):hover{
+            color:$color-button;
+            background-color: $bg-color-grey
+        }
+    }    
+}
+.pagination-style{
+    background-color: $bg-color-grey !important;
+}
+  
+@media only screen and (max-width: 575px)  {
+
+    .img-scroll{
+        display:none;
+    }
+    .row > *{
+        padding-right:0;
+    }
+    .container-fluid{
+       padding-left:0.5rem !important;
+       padding-right:0!important;
+       background:black;
+    }
+    .card-movie{
+        background-color: white;
+        margin-bottom:0.5rem;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        .card-header{    
+            flex: 0 0 auto;
+            width: 75%; 
+            .card-title{
+                h3{
+                    font-size:10pt !important;              
+                }
+                p{
+                    font-size:9pt !important;
+                    color: #9d9d9d;
+                    margin-bottom:0;
+                }
+            }
+            .card-datas{
+                span{
+                    font-size:7pt !important;
+                }
+                span:first-child{
+                    padding-left: 5px !important;
+                    padding-right: 5px !important;
+                }
+            } 
+              
+        }
+        .col-2{
+            flex-basis: initial;
+        }
+    }
+    .card-picture{
+        padding:0 !important;
+        justify-content:center;
+    } 
+    .pagination-style{
+        border:solid 1px $bg-color-grey;
+        border-right:solid 1px $bg-color-grey;
+    }
+    
+    
+}

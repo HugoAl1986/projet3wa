@@ -1,0 +1,75 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left pt-2 pb-2">{{'EDITING' | translate}}</h4>
+  <button type="button" class="p-1" (click)="bsModalRef.hide()">
+    <img
+      src="../../assets/icons/X_icon .svg"
+      class="img-responsive mb-4 p-2"
+      alt="{{'ICON_CLOSE' |translate}}"
+    />
+  </button>
+</div>
+<form
+  class="d-flex flex-column justify-content-start"
+  [formGroup]="profileForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="modal-body ps-5 pe-5 pt-0">
+    <div class="d-flex">
+      <label for="Minutes" class="col-sm-2 col-form-label">{{'IS_ADULT' | translate}}</label>
+      <div class="col-sm-10 d-flex flex-row flex align-items-center">
+        <input type="radio" name="isAdult" (change)="changeIsAdult($event)" value="1" [checked]="profileForm.value.isAdult == '1' ? true : false" class="form-control me-1" />
+        <span class="me-5">{{'ADULT_YES' |translate}}</span>
+        <input type="radio" name="isAdult" (change)="changeIsAdult($event)" value="0" [checked]="profileForm.value.isAdult == '0' ? true : false" class="form-control me-1" />
+        <span>{{'ADULT_NO' |translate}}</span>
+      </div>
+    </div>
+    <div class="d-flex">
+      <label for="Minutes" class="col-sm-2 col-form-label">Durée</label>
+      <div class="col-sm-10 div-input">
+        <input
+          type="text"
+          id="minutes"
+          class="form-control"
+          formControlName="duration"
+          [value]="profileForm.value.duration"
+        />
+      </div>
+    </div>
+    <div class="d-flex">
+      <label for="Year" class="col-sm-2 col-form-label">{{'YEAR' |translate}}</label>
+      <div class="btn-group d-flex w-75">
+        <select class="form-select" aria-label="Default select example" formControlName="year" [value]="profileForm.value.year">
+          <option *ngFor="let year of years" [value]="year">{{year}}</option>
+        </select>     
+      </div>
+    </div>
+    <div class="d-flex">
+      <label for="Categories" class="col-sm-2 col-form-label">Categories</label>
+      <div class="col-sm-10 div-input">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="genres"
+          [value]="profileForm.value.categories"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="d-flex pt-2 pb-4 justify-content-around modal_footer">
+    <button
+      type="submit"
+      class="btn btn-primary btn-sm"
+      (click)="bsModalRef.hide()"
+      [disabled]="!profileForm.valid"
+    >
+      OK
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary btn-sm"
+      (click)="bsModalRef.hide()"
+    >
+    {{'BUTTON_CANCEL' |translate}}
+    </button>
+  </div>
+</form>

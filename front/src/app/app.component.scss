@@ -1,0 +1,16 @@
+@import "./sass/variables_custom";
+
+.container-main{
+    div:first-child{
+        flex-grow:9;
+    }
+    div:last-child{
+        flex-grow:1;
+    }
+}
+
+
+
+
+
+   

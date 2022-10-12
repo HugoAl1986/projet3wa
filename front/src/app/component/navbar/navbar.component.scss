@@ -1,0 +1,58 @@
+@import "../../sass/variables_custom";
+
+form{
+    flex-basis:30%;
+    input{
+        border:none;
+        border-radius: 0;
+        font-size: 12pt;
+        width:100%;
+        height:$input-height-span;
+        font-style: italic;
+        padding:0.2rem 0.3rem !important;
+    }
+    input:focus{
+        box-shadow: none;
+    }
+    div{
+        flex-wrap:nowrap;
+    }
+    span{
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        background-color:white;
+        margin-left:0;
+        border:0;
+        height:$input-height-span;
+    }
+}
+.restNavbar{
+    flex-grow:4;
+    img:first-of-type{
+        width:30px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 575px)  {
+    form{
+        flex-basis:auto;
+        margin-left:0 !important;
+        width:100%;
+        div{
+            justify-content:end !important;
+            input{
+                background-color:transparent;
+                color:white;
+                display:none;
+            }
+            span{
+                background-color:transparent;
+            }
+            #img-search{
+                filter: brightness(0) invert(1);
+            }
+        }
+    }
+}

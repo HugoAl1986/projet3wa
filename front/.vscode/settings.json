@@ -1,0 +1,5 @@
+{
+  "html.format.wrapAttributes": "force-aligned",
+  "html.format.wrapLineLength": 150,
+  "git.ignoreLimitWarning": true
+}

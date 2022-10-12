@@ -1,0 +1,16 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+$enable-gradients: true;
+$gradient:linear-gradient(180deg, #494848, #000000) !important;
+$input-height-span:25px;
+$font-weight-thin:100;
+$font-weight-light:200;
+$font-weight-normal:300;
+$font-weight-regular:500;
+$size-title-detail:16px;
+$bg-color-grey:#F3F3F3;
+$color-button:#9B9B9B;
+$color-input:#E9E9E9;
+$shadow: 0px 0px 11px 0 #E8E5E5;

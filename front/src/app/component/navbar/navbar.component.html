@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg bg-dark bg-gradient pt-0 pb-0">
+    <div class="container-fluid ps-3 pe-3">
+      <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
+        <a *ngIf="displayItem" class="navbar-brand mt-2 mb-2" href="#"></a>
+        <a routerLink="/login"><img src="../../assets/icons/logo.svg" alt="Logo" /></a>
+        <form [formGroup]="myGroup" class="ms-2 mt-2 mb-2">
+          <div class="input-group" [ngStyle]="newNav ? {'justify-content':'end'} : {'justify-content':'center'}">
+            <input
+              class="form-control inputsearch"
+              placeholder="{{ 'SEARCH_MOVIE' | translate }}"
+              formControlName="title"
+              [ngStyle]="newNav ? {'display':'block'} : {'display':'none'}"
+
+            />
+            <span class="input-group-text" id="basic-addon1"
+              ><img
+                *ngIf="displayIconSearch"
+                id="img-search"
+                (click)="displaySmall()"
+                src="../../assets/icons/icon_magnify.svg"
+                alt="{{ 'ICON_SEARCH' | translate }}"
+                
+            />
+            <img
+                *ngIf="displayIconClose"
+                id="img-search"
+                (click)="displaySmall()"
+                src="../assets/icons/X_icon .svg"
+                alt="{{ 'ICON_CLOSE' | translate }}"
+            />
+          </span>
+          </div>
+        </form>
+        <div *ngIf="displayItem" class="restNavbar d-flex justify-content-end">
+          <img src="../../../assets/icons/icon-login.png" alt="icon-login">
+          <img
+            src="../assets/icons/flag_fr.svg"
+            class="p-1"
+            [ngStyle]="{'opacity':opacityFr}"
+            (click)="chooseLanguage(langFr)"
+            alt="{{ 'ICON_FRANCE' | translate }}"
+          />
+          <img
+            src="../assets/icons/flag_usa.svg"
+            class="p-1"
+            [ngStyle]="{'opacity':opacityUs}"
+            (click)="chooseLanguage(langUs)"
+            alt="{{ 'ICON_USA' | translate }}"
+          />
+        </div>
+      </div>
+    </div>
+  </nav>

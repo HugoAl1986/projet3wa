@@ -1,0 +1,18 @@
+{
+    "SEARCH_MOVIE" : "Recherchez un film ...",
+    "NAME" : "Nom",
+    "DURATION" : "Durée",
+    "YEAR" : "Année",
+    "IS_ADULT" : "Adulte",
+    "ICON_POSTER" : "Icône poster",
+    "ICON_SEARCH": "Icône recherche",
+    "ICON_MODIFY" : "Icône modifier",
+    "EDITING" : "Modification",
+    "ICON_CLOSE" : "Icone fermeture",
+    "ICON_FRANCE" : "Icône drapeau France",
+    "ICON_USA" : "Icône drapeau USA",
+    "ICON_SCROLL" : "Icône pour scroller vers le haut de la page",
+    "ADULT_YES" : "Oui",
+    "ADULT_NO" : "Non",
+    "BUTTON_CANCEL" : "Annuler"
+}
