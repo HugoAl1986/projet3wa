@@ -1,0 +1,13 @@
+@import "../../sass/variables_custom";
+
+    button{
+        position :relative;
+        right:5px;
+    }
+   
+    .invalid-input{
+        @include invalid-input;
+    }
+    p{
+        color:blue
+    }

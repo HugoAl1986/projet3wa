@@ -10,15 +10,15 @@ import { from, of } from 'rxjs';
   providedIn: 'root'
 })
 export class MoviesService {
-  usersUrl: string;
+  moviesUrl: string;
   eventSearchMovie:EventEmitter<any> = new EventEmitter<any>;
 
   constructor(private http: HttpClient) { 
-    this.usersUrl = 'http://localhost:8080/api/movies';
+    this.moviesUrl = 'http://localhost:8080/api/movies';
   }
 
   getMovies(): Observable<Movie[]>{
-    return this.http.get<Movie[]>(this.usersUrl);
+    return this.http.get<Movie[]>(this.moviesUrl);
   }
 
   emitEvent(data:any){

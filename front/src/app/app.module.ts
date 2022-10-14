@@ -18,6 +18,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { LoginComponent } from './component/login/login.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -29,6 +30,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     DetailsMovieComponent,
     NavbarComponent,
     LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

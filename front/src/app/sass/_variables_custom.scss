@@ -14,3 +14,9 @@ $bg-color-grey:#F3F3F3;
 $color-button:#9B9B9B;
 $color-input:#E9E9E9;
 $shadow: 0px 0px 11px 0 #E8E5E5;
+
+@mixin invalid-input {
+    color:red;
+    font-size:13px;
+    margin-top: 10px;
+  }

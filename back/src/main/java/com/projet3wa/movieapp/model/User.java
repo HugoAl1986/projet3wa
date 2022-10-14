@@ -32,7 +32,7 @@ public class User {
     private String role;
 
     public void setRole() {
-        if(this.email.equals("admin")){
+        if(this.email.equals("admin@admin")){
             this.role = "admin";
         }else{
             this.role = "user";

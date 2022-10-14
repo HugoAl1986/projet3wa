@@ -14,7 +14,7 @@
           <div class="card-title ml-1">
             <h3 class="mb-0">{{ movie.name }}</h3>
           </div>
-          <button
+          <button *ngIf="authentication == 'admin'"
             type="button"
             class="d-flex"
             (click)="openModalWithComponent(movie)"

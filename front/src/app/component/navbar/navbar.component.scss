@@ -28,10 +28,20 @@ form{
 }
 .restNavbar{
     flex-grow:4;
-    img:first-of-type{
+    a{
+        text-decoration: none;
+        color:$warning;
+    }
+    button{
+        background: transparent;
+        border:none;
         width:30px;
-        margin-right: 10px;
-        cursor: pointer;
+        margin-right:10px;
+        img:first-of-type{
+            width:30px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
     }
 }
 

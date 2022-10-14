@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './component/login/login.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { MoviesComponent } from './component/movies/movies.component';
+import { DashboardAccessService } from './service/dashboard-access.service';
 
 const routes: Routes = [
-  
-   {path:'login', component:LoginComponent},
-   {path:'movies', component:MoviesComponent},
-   {path: '', redirectTo:'movies', pathMatch:'full'}
-   
 
+   {path: '', redirectTo:'movies', pathMatch:'full'},
+   {path:'movies', component:MoviesComponent},
+   {path:'dashboard', component:DashboardComponent, canActivate: [DashboardAccessService]},
+   
+  
 ];
 
 @NgModule({

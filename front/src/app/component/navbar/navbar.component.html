@@ -1,9 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-dark bg-gradient pt-0 pb-0">
     <div class="container-fluid ps-3 pe-3">
       <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
-        <a *ngIf="displayItem" class="navbar-brand mt-2 mb-2" href="#"></a>
-        <a routerLink="/login"><img src="../../assets/icons/logo.svg" alt="Logo" /></a>
-        <form [formGroup]="myGroup" class="ms-2 mt-2 mb-2">
+        <a routerLink="/movies"><img src="../../assets/icons/logo.svg" alt="Logo" /></a>
+        <form [formGroup]="myGroup" class="ms-4 mt-2 mb-2">
           <div class="input-group" [ngStyle]="newNav ? {'justify-content':'end'} : {'justify-content':'center'}">
             <input
               class="form-control inputsearch"
@@ -32,7 +31,9 @@
           </div>
         </form>
         <div *ngIf="displayItem" class="restNavbar d-flex justify-content-end">
-          <img src="../../../assets/icons/icon-login.png" alt="icon-login">
+          <button *ngIf="authentication == 'admin'" (click) = "unsubscribe()" type="button">deconnecte</button>
+          <a *ngIf="authentication == 'admin'" routerLink="/dashboard" class="d-flex align-items-center me-2"> <span>Dashboard</span></a>
+          <button *ngIf="authentication == 'none'" class="me-2" type="button" (click)="openModal(template)"><img src="../../../assets/icons/icon-login.png" alt="icon login"></button>      
           <img
             src="../assets/icons/flag_fr.svg"
             class="p-1"
@@ -50,4 +51,8 @@
         </div>
       </div>
     </div>
-  </nav>
+  </nav> 
+  <ng-template #template>
+  <app-login [modalData]="modalRef"></app-login>
+  </ng-template> 
+  
