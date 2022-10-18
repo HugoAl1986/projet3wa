@@ -1,0 +1,44 @@
+<div class="d-flex flex-wrap p-4 justify-content-center">
+  <div class="w-100 d-flex justify-content-end">
+    <div class="mb-3">
+      <span>Ajouter un film</span>
+      <button #createMovie value="createMovie" (click)="openModal(template, createMovie.value, null)"><img src="../../../assets/icons/button-add.png"  alt="button add movie"></button>
+    </div>
+  </div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Year</th>
+            <th scope="col">Duration</th>
+            <th scope="col">is Adult</th>
+            <th scope="col">Categories</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of moviesList">
+            <th scope="row">{{movie.id}}</th>
+            <td>{{movie.name}}</td>
+            <td>{{movie.year}}</td>
+            <td>{{movie.duration}}</td>
+            <td>{{movie.isAdult}}</td>
+            <td><span *ngFor="let cat of movie.categories">{{ cat.name + " "}}</span></td>
+            <td>
+              <button class = "pe-5" #modifyMovie value="modifyValue" (click)="openModal(template, modifyMovie.value, movie )">
+                <img src="../../../assets/icons/icon-modify.png"> 
+              </button>
+              <button #modifyMovie value="modifyValue" (click)="deleteMovie(movie)">
+                <img src="../../../assets/icons/icon-delete.png"> 
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<ng-template #template>
+  <app-details-movie [modalData]="modalRef" [movie]="newMovie" [title]="title"></app-details-movie>
+</ng-template> 

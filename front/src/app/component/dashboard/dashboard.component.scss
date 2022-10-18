@@ -1,0 +1,13 @@
+@import "../../sass/variables_custom";
+div{
+    background:#F3F2F2;
+    button{
+        border:none;
+        color:black;
+        font-size:medium;
+    }
+    button:hover{
+        color:$warning;
+        cursor:pointer;
+    }
+}

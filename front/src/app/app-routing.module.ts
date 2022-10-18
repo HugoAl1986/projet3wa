@@ -10,7 +10,6 @@ const routes: Routes = [
    {path:'movies', component:MoviesComponent},
    {path:'dashboard', component:DashboardComponent, canActivate: [DashboardAccessService]},
    
-  
 ];
 
 @NgModule({

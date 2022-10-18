@@ -6,17 +6,17 @@ import { MoviesService } from './movies.service';
 
 describe('MoviesService', () => {
   let service: MoviesService;
-  let movie:Movie = {
-        "id":"tt0000001",
-        "titleType":"short",
-        "primaryTitle":"Carmencita",
-        "originalTitle":"Carmencita",
-        "isAdult":"2",
-        "startYear":"1922",
-        "endYear":"1986",
-        "runtimeMinutes":"1500",
-        "genres":"Documentary,Short"
-    };
+  let movie: Movie = {
+    id: 'tt0000001',
+    titleType: 'short',
+    primaryTitle: 'Carmencita',
+    originalTitle: 'Carmencita',
+    isAdult: '2',
+    startYear: '1922',
+    endYear: '1986',
+    runtimeMinutes: '1500',
+    genres: 'Documentary,Short',
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

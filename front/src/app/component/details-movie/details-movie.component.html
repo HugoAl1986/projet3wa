@@ -1,6 +1,6 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left pt-2 pb-2">{{'EDITING' | translate}}</h4>
-  <button type="button" class="p-1" (click)="bsModalRef.hide()">
+  <h4 class="modal-title pull-left pt-2 pb-2">{{title}}</h4>
+  <button type="button" class="p-1" (click)="modalData?.hide()">
     <img
       src="../../assets/icons/X_icon .svg"
       class="img-responsive mb-4 p-2"
@@ -15,11 +15,23 @@
 >
   <div class="modal-body ps-5 pe-5 pt-0">
     <div class="d-flex">
-      <label for="Minutes" class="col-sm-2 col-form-label">{{'IS_ADULT' | translate}}</label>
+      <label for="Minutes" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10 div-input">
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          formControlName="name"
+          [value]="profileForm.value.name"
+        />
+      </div>
+    </div>
+    <div class="d-flex">
+      <label for="isAdult" class="col-sm-2 col-form-label">{{'IS_ADULT' | translate}}</label>
       <div class="col-sm-10 d-flex flex-row flex align-items-center">
-        <input type="radio" name="isAdult" (change)="changeIsAdult($event)" value="1" [checked]="profileForm.value.isAdult == '1' ? true : false" class="form-control me-1" />
+        <input type="radio"  name="isAdult" (change)="changeIsAdult($event)" value="Yes" [checked]="profileForm.value.isAdult == 'Yes' ? true : false" class="form-control me-1" />
         <span class="me-5">{{'ADULT_YES' |translate}}</span>
-        <input type="radio" name="isAdult" (change)="changeIsAdult($event)" value="0" [checked]="profileForm.value.isAdult == '0' ? true : false" class="form-control me-1" />
+        <input type="radio" name="isAdult" (change)="changeIsAdult($event)" value="No" [checked]="profileForm.value.isAdult == 'No' ? true : false" class="form-control me-1" />
         <span>{{'ADULT_NO' |translate}}</span>
       </div>
     </div>
@@ -44,14 +56,14 @@
       </div>
     </div>
     <div class="d-flex">
-      <label for="Categories" class="col-sm-2 col-form-label">Categories</label>
-      <div class="col-sm-10 div-input">
-        <input
-          type="text"
-          class="form-control"
-          formControlName="genres"
-          [value]="profileForm.value.categories"
-        />
+      <div class="label">
+        <label for="Categories" class="align-self-start">Categories</label> 
+      </div>         
+      <div class="category d-flex justify-content-start flex-wrap">
+        <div class="form-check d-flex justify-content-start" *ngFor="let cat of arrayCat" formArrayName="categories">
+          <input type="checkbox" class="me-1" (click)="onClick($event,cat.getName())" [checked]="arrayModify != undefined && arrayModify.indexOf(cat.name) != -1 ? true : false" >
+          <label class="me-1">{{cat.getName()}}</label>
+        </div>
       </div>
     </div>
   </div>
@@ -59,7 +71,7 @@
     <button
       type="submit"
       class="btn btn-primary btn-sm"
-      (click)="bsModalRef.hide()"
+      (click)="modalData?.hide()"
       [disabled]="!profileForm.valid"
     >
       OK

@@ -18,7 +18,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api/movies")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class ControllerMovie {
 
     @Autowired
@@ -32,7 +32,6 @@ public class ControllerMovie {
 
     @Autowired
     private CategoryService categoryService;
-
     @PostMapping(value = "/savemovie")
     public ResponseEntity<Movie> create(@RequestBody Movie movie) {
         if(movieService.checkExistingMovie(movie)){
@@ -84,10 +83,9 @@ public class ControllerMovie {
         return new ResponseEntity<>(movieUpdated, HttpStatus.ACCEPTED);
     }
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<String> deleteMovie(@PathVariable Long id){
-        Movie movie = movieService.findMovieById(id);
+    public ResponseEntity<?> deleteMovie(@PathVariable Long id){
         movieService.deleteMovie(id);
-        return new ResponseEntity<>(movie.getName() + " has been deleted", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
 

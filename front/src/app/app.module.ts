@@ -13,12 +13,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule} from '@angular/common/http';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { LoginComponent } from './component/login/login.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { MoviesListComponent } from './component/movies-list/movies-list.component';
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -31,6 +32,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     NavbarComponent,
     LoginComponent,
     DashboardComponent,
+    MoviesListComponent,
   ],
   imports: [
     CommonModule,

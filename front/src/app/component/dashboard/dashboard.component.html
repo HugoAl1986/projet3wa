@@ -1,1 +1,5 @@
-<p>dashboard works!</p>
+<div class ="d-flex justify-content-center pt-2 pb-2 align-center">
+    <button #movies class ="mb-0" [ngStyle] = "{'color': colorActiveComponent}" value = "movies"(click) = "displayComponent(movies.value)">Movies list</button>
+    <button #users class =" mb-0" value = "users" (click) = "displayComponent(users.value)">Users list</button>
+</div>
+<app-movies-list [showMovieList]="showMovieList"></app-movies-list>

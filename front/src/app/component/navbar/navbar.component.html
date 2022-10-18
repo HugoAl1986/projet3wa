@@ -31,9 +31,9 @@
           </div>
         </form>
         <div *ngIf="displayItem" class="restNavbar d-flex justify-content-end">
-          <button *ngIf="authentication == 'admin'" (click) = "unsubscribe()" type="button">deconnecte</button>
-          <a *ngIf="authentication == 'admin'" routerLink="/dashboard" class="d-flex align-items-center me-2"> <span>Dashboard</span></a>
-          <button *ngIf="authentication == 'none'" class="me-2" type="button" (click)="openModal(template)"><img src="../../../assets/icons/icon-login.png" alt="icon login"></button>      
+          <a *ngIf="authentication == 'admin'" routerLink="/dashboard" class="d-flex align-items-center me-3"> <span>Dashboard</span></a>
+          <button *ngIf="authentication == 'none'" class="me-3" type="button" (click)="openModal(template)"><img src="../../../assets/icons/icon-login.png" alt="icon login"></button> 
+          <button *ngIf="authentication == 'admin'" class="me-3" (click) = "unsubscribe()" type="button"><img src="../../../assets/icons/logout.png"></button>     
           <img
             src="../assets/icons/flag_fr.svg"
             class="p-1"

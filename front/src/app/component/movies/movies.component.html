@@ -14,17 +14,6 @@
           <div class="card-title ml-1">
             <h3 class="mb-0">{{ movie.name }}</h3>
           </div>
-          <button *ngIf="authentication == 'admin'"
-            type="button"
-            class="d-flex"
-            (click)="openModalWithComponent(movie)"
-          >
-            <img
-              class="img-responsive align-self-start"
-              src="../../../assets/icons/icon_pencil.svg"
-              alt="{{ 'ICON_MODIFY' | translate }}"
-            />
-          </button>
           <div class="card-content col-12 d-flex flex-wrap">
             <div class="card-datas col-2 m-1">
               <span class="text-center d-block">ID</span>
