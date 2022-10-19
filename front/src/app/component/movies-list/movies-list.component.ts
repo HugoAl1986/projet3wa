@@ -44,4 +44,13 @@ export class MoviesListComponent implements OnInit {
       this.route.navigate(["movies"])
     });
   }
+  addMovie($event:any){
+    if(this.moviesList.indexOf($event.id) == -1){
+      this.moviesList.push($event);
+    }else{
+      
+    }
+    
+    console.log($event);
+  }
 }

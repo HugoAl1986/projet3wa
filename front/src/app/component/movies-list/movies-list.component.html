@@ -40,5 +40,5 @@
 </div>
 
 <ng-template #template>
-  <app-details-movie [modalData]="modalRef" [movie]="newMovie" [title]="title"></app-details-movie>
+  <app-details-movie (newMovie)="addMovie($event)" [modalData]="modalRef" [movie]="newMovie" [title]="title"></app-details-movie>
 </ng-template> 

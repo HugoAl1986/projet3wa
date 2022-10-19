@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import {
   FormGroup,
@@ -11,6 +11,8 @@ import { MoviesService } from '../../service/movies.service';
 import { Movie } from '../../model/movie';
 import { Category } from '../../model/category';
 import { Router } from '@angular/router';
+import {map} from 'rxjs';
+import { SelectorListContext } from '@angular/compiler';
 
 
 @Component({
@@ -21,13 +23,14 @@ import { Router } from '@angular/router';
 export class DetailsMovieComponent implements OnInit {
   closeBtnName?: string;
   @Input() movie: Movie;
-  @Input() movieList:Movie[];
+  @Output() newMovie: EventEmitter<Movie> = new EventEmitter<Movie>();
+
   profileForm: FormGroup;
   years: Array<number> = [];
   @Input() modalData?: BsModalRef;
   @Input() title: string;
   arrayCat: Array<Category> = [];
-  array:Array<string> = [];
+  array:Array<string>;
   arrayModify:Array<string> = []
 
   constructor(public bsModalRef: BsModalRef,private service: MoviesService,private fb: FormBuilder,private route:Router
@@ -38,7 +41,7 @@ export class DetailsMovieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+    this.array = [];
     this.profileForm = this.fb.group({
       id: new FormControl(this.movie?.id),
       name: new FormControl(this.movie?.name, Validators.required),
@@ -53,26 +56,29 @@ export class DetailsMovieComponent implements OnInit {
         this.arrayModify.push(this.movie.categories[i].name);  
         this.array.push(this.movie.categories[i].name);
       }
+     
       
     }
+  
+    
   }
 
   onSubmit() {
     if (this.title == 'Create movie') {
-      this.service.saveMovie(this.profileForm.value).subscribe((data:Movie) => {
+      console.log(this.array)
+      this.service.saveMovie(this.profileForm.value).subscribe((data:Movie) => {   
       this.profileForm.value.categories = this.array;
       let movie = this.profileForm.value;
       this.service.saveMovieLinked(movie).subscribe(datas=>{
-        console.log(datas);
-        this.route.navigate(["/movies"]);
+        //this.route.navigate(["/movies"]);
+        this.newMovie.emit(datas);
       })
      });     
     }else{
       this.profileForm.value.categories = this.array;
-      console.log(this.profileForm.value);
       this.service.updateMovie(this.profileForm.value).subscribe(data=>{
-        console.log(data);
-        this.route.navigate(["/movies"]);
+        this.newMovie.emit(data);
+     // this.route.navigate(["/movies"]);
       }
     );      
     }
@@ -100,10 +106,12 @@ export class DetailsMovieComponent implements OnInit {
   onClick(value: any, cat: string) {
     if (value.target.checked && this.array.indexOf(cat) == -1) {
       this.array.push(cat);
+      console.log(this.profileForm);
     }
     if (value.target.checked == false && this.array.indexOf(cat) != -1) {
       let index = this.array.indexOf(cat);
       this.array.splice(index, 1);
     }
+    
   }
 }

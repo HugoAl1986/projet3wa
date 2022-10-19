@@ -72,14 +72,15 @@
       type="submit"
       class="btn btn-primary btn-sm"
       (click)="modalData?.hide()"
-      [disabled]="!profileForm.valid"
+      [disabled]="!profileForm.valid || array.length == 0"
+      >
     >
       OK
     </button>
     <button
       type="button"
       class="btn btn-primary btn-sm"
-      (click)="bsModalRef.hide()"
+      (click)="modalData?.hide()"
     >
     {{'BUTTON_CANCEL' |translate}}
     </button>
