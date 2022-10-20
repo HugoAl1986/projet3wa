@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-dark bg-gradient pt-0 pb-0">
+<!--<nav class="navbar navbar-expand-lg bg-dark bg-gradient pt-0 pb-0">
     <div class="container-fluid ps-3 pe-3">
-      <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
-        <a routerLink="/movies"><img src="../../assets/icons/logo.svg" alt="Logo" /></a>
+      <div class="collapse navbar-collapse d-flex" >
+        <a id = "logo" routerLink="/movies"><img src="../../assets/icons/logo.svg" alt="Logo" /></a>
         <form [formGroup]="myGroup" class="ms-4 mt-2 mb-2">
           <div class="input-group" [ngStyle]="newNav ? {'justify-content':'end'} : {'justify-content':'center'}">
             <input
@@ -52,6 +52,127 @@
       </div>
     </div>
   </nav> 
+-->
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a id = "logo" routerLink="/movies"><img src="../../assets/icons/logo.svg" alt="Logo" /></a>
+    <form [formGroup]="myGroup" class="mt-2 mb-2">
+      <div class="input-group" [ngStyle]="newNav ? {'justify-content':'end'} : {'justify-content':'center'}">
+        <input
+          class="form-control inputsearch"
+          placeholder="{{ 'SEARCH_MOVIE' | translate }}"
+          formControlName="title"
+          [ngStyle]="newNav ? {'display':'block'} : {'display':'none'}"
+
+        />
+      </div>
+    </form>
+    <button id="button-toggle" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <img src="../../../assets/icons/hamburger.png" alt="icon hamburger for menu">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" id="home" routerLink="/movies">Home</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="authentication == 'admin'" routerLink="/dashboard" class="d-flex align-items-center"> <span>Dashboard</span></a>
+        </li>
+        <li class="nav-item">
+          <button *ngIf="authentication == 'none'" type="button" (click)="openModal(template)"><img id="login" src="../../../assets/icons/icon-login.png" alt="icon login"><span>Login</span></button>         
+        </li>
+        <li class="nav-item">
+          <button *ngIf="authentication == 'admin'" (click) = "unsubscribe()" type="button"><img id="logout" src="../../../assets/icons/logout.png"><span>Logout</span></button>    
+        </li>
+        <li class="nav-item">
+          <img
+          src="../assets/icons/flag_fr.svg"
+          class="p-1"
+          [ngStyle]="{'opacity':opacityFr}"
+          (click)="chooseLanguage(langFr)"
+          alt="{{ 'ICON_FRANCE' | translate }}"
+          />
+          <img
+          src="../assets/icons/flag_usa.svg"
+          class="p-1"
+          [ngStyle]="{'opacity':opacityUs}"
+          (click)="chooseLanguage(langUs)"
+          alt="{{ 'ICON_USA' | translate }}"
+          />
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid"> 
+      <a class="navbar-brand" href="#">Navbar</a>   
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="navbar-nav">
+      <li class="nav-item">
+        <form [formGroup]="myGroup" class="ms-4 mt-2 mb-2">
+          <div class="input-group" [ngStyle]="newNav ? {'justify-content':'end'} : {'justify-content':'center'}">
+            <input
+              class="form-control inputsearch"
+              placeholder="{{ 'SEARCH_MOVIE' | translate }}"
+              formControlName="title"
+              [ngStyle]="newNav ? {'display':'block'} : {'display':'none'}"
+
+            />
+            <span class="input-group-text" id="basic-addon1"
+              ><img
+                *ngIf="displayIconSearch"
+                id="img-search"
+                (click)="displaySmall()"
+                src="../../assets/icons/icon_magnify.svg"
+                alt="{{ 'ICON_SEARCH' | translate }}"
+                
+            />
+            <img
+                *ngIf="displayIconClose"
+                id="img-search"
+                (click)="displaySmall()"
+                src="../assets/icons/X_icon .svg"
+                alt="{{ 'ICON_CLOSE' | translate }}"
+            />
+          </span>
+          </div>
+        </form>
+      </li>
+      </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a id = "logo" routerLink="/movies">Accueil</a>
+          </li> 
+         
+          <li class="nav-item">Dashboard</li>
+          <li class="nav-item">Login</li>
+          <li class="nav-item">Logout</li>
+          <li class="nav-item">
+            <img
+            src="../assets/icons/flag_fr.svg"
+            class="p-1"
+            [ngStyle]="{'opacity':opacityFr}"
+            (click)="chooseLanguage(langFr)"
+            alt="{{ 'ICON_FRANCE' | translate }}"
+          />
+          <img
+            src="../assets/icons/flag_usa.svg"
+            class="p-1"
+            [ngStyle]="{'opacity':opacityUs}"
+            (click)="chooseLanguage(langUs)"
+            alt="{{ 'ICON_USA' | translate }}"
+          />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  -->
   <ng-template #template>
   <app-login [modalData]="modalRef"></app-login>
   </ng-template> 

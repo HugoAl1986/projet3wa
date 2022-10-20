@@ -1,8 +1,8 @@
-import { Component,ElementRef,HostListener, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import { Component,ElementRef,HostListener,OnInit, TemplateRef} from '@angular/core';
 import { MoviesService } from 'src/app/service/movies.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
+import { BsModalService, BsModalRef} from 'ngx-bootstrap/modal';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 

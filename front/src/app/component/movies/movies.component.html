@@ -1,11 +1,11 @@
-<div class="container-fluid p-3 d-flex">
+<div class="container-fluid d-flex">
   <div class="row w-100">
     <div
       *ngFor="
         let movie of movieList
           | filter: searchMovie
           | paginate
-            : { id: 'listing_pagination', itemsPerPage: 18, currentPage: page }
+            : { id: 'listing_pagination', itemsPerPage: 9, currentPage: page }
       "
       class="col-xs-12 col-md-6 col-xl-4"
     >

@@ -5,7 +5,7 @@
       <button #createMovie value="createMovie" (click)="openModal(template, createMovie.value, null)"><img src="../../../assets/icons/button-add.png"  alt="button add movie"></button>
     </div>
   </div>
-    <table class="table table-striped">
+    <table class="table table-striped overflow-scroll">
         <thead>
           <tr>
             <th scope="col">id</th>
@@ -25,7 +25,7 @@
             <td>{{movie.duration}}</td>
             <td>{{movie.isAdult}}</td>
             <td><span *ngFor="let cat of movie.categories">{{ cat.name + " "}}</span></td>
-            <td>
+            <td id="actions">
               <button class = "pe-5" #modifyMovie value="modifyValue" (click)="openModal(template, modifyMovie.value, movie )">
                 <img src="../../../assets/icons/icon-modify.png"> 
               </button>

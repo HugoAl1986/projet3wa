@@ -4,6 +4,9 @@
 .navbar{
     padding:0;
 }
+.container-fluid{
+    padding: 1rem;
+}
 
 .bg-gradient{
     background-image: $gradient;
@@ -90,7 +93,7 @@
     }    
 }
 .pagination-style{
-    background-color: $bg-color-grey !important;
+    background-color: $bg-color-grey;
 }
   
 @media only screen and (max-width: 575px)  {
@@ -102,9 +105,8 @@
         padding-right:0;
     }
     .container-fluid{
-       padding-left:0.5rem !important;
-       padding-right:0!important;
-       background:black;
+       padding-left:0;
+       padding-right:0;
     }
     .card-movie{
         background-color: white;
@@ -116,21 +118,22 @@
             width: 75%; 
             .card-title{
                 h3{
-                    font-size:10pt !important;              
+                    font-size:13pt;              
                 }
                 p{
-                    font-size:9pt !important;
+                    font-size:9pt;
                     color: #9d9d9d;
                     margin-bottom:0;
                 }
             }
             .card-datas{
+                width:max-content;
                 span{
-                    font-size:7pt !important;
+                    font-size:10pt;
                 }
-                span:first-child{
-                    padding-left: 5px !important;
-                    padding-right: 5px !important;
+                span:first-child{   
+                    padding-left: 5px;
+                    padding-right: 5px;
                 }
             } 
               
@@ -140,7 +143,7 @@
         }
     }
     .card-picture{
-        padding:0 !important;
+        padding:0;
         justify-content:center;
     } 
     .pagination-style{

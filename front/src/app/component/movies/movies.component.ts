@@ -1,16 +1,10 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import { MoviesService } from 'src/app/service/movies.service';
 import { Movie } from 'src/app/model/movie';
+import * as _ from 'lodash';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { DetailsMovieComponent } from 'src/app/component/details-movie/details-movie.component';
-import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -36,7 +30,11 @@ export class MoviesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.service.getMovies().subscribe((datas) => (this.movieList = datas));
+    this.service.getMovies().subscribe((datas) => {
+      this.movieList = datas;
+      let array = _.sortBy(this.movieList,['id']);
+      this.movieList = array;
+    });
     this.service.eventSearchMovie.subscribe(
       (data) => (this.searchMovie = data)
     );

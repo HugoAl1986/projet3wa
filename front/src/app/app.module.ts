@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,8 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     MoviesListComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    NgxNavbarModule,
     CommonModule,
     RouterModule,
     BrowserModule,

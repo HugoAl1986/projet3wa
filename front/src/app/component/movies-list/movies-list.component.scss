@@ -5,3 +5,38 @@ button{
         width:20px;
     }
 }
+@media only screen and (max-width: 990px)  {
+table{
+    thead{
+        th{
+            font-size:small;
+        }
+
+    }
+    tbody{
+        tr{
+            font-size:small;
+            
+        }
+        #actions{
+            button:first-child{
+                padding-right:0 !important;
+            }
+        }
+        
+    }
+}
+}
+@media only screen and (max-width: 640px)  {
+    table{
+        img{
+            width:12px;
+        }
+    }
+}
+@media only screen and (max-width: 440px)  {
+  
+        table{
+            overflow-x:scroll;
+        }
+}

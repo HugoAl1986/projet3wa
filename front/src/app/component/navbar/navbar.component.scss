@@ -1,68 +1,108 @@
 @import "../../sass/variables_custom";
 
-form{
-    flex-basis:30%;
-    input{
-        border:none;
-        border-radius: 0;
-        font-size: 12pt;
-        width:100%;
-        height:$input-height-span;
-        font-style: italic;
-        padding:0.2rem 0.3rem !important;
-    }
-    input:focus{
-        box-shadow: none;
-    }
-    div{
-        flex-wrap:nowrap;
-    }
-    span{
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-        background-color:white;
-        margin-left:0;
-        border:0;
-        height:$input-height-span;
+#button-toggle{
+    border-color:$warning;
+    border-width:2px;
+    img{
+        color:$warning;
+        width:25px;
     }
 }
-.restNavbar{
-    flex-grow:4;
-    a{
-        text-decoration: none;
+.input-group{
+    margin-left:1rem;
+    border-width:2px;
+    .inputsearch{
+        background:$dark;
+        color:$warning;
+        border-color:$warning;
+    }
+    .inputsearch::placeholder{
         color:$warning;
     }
-    button{
-        background: transparent;
-        border:none;
-        width:30px;
-        margin-right:10px;
-        img:first-of-type{
-            width:30px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
+}
+#home{
+    display:none
+}
+#navbarNav{
+    justify-content: flex-end;
+    .navbar-nav{ 
+        align-self: flex-end; 
+
+        .nav-item{
+            align-self:center;            
+            a{
+                color:$warning;
+                text-decoration:none;
+                padding:0;
+                margin-right:1rem;
+            }
+            button{
+                margin-right:1rem;
+                border:none;
+                padding:0;
+                background:$dark;
+                img{
+                    width:35px;
+                }
+                span{
+                    display:none;    
+                }
+            }
+        }  
+        
     }
 }
 
-@media only screen and (max-width: 575px)  {
-    form{
-        flex-basis:auto;
-        margin-left:0 !important;
-        width:100%;
-        div{
-            justify-content:end !important;
-            input{
-                background-color:transparent;
-                color:white;
-                display:none;
-            }
-            span{
-                background-color:transparent;
-            }
-            #img-search{
-                filter: brightness(0) invert(1);
+
+@media only screen and (max-width: 990px)  {
+    #login,#logout{
+        display:none;
+    }
+    #home{
+        display:block;
+        color:$warning;
+    }
+    #button-toggle{
+        margin-right:1rem;
+    }
+    .container-fluid{
+        justify-content: space-between;
+        #logo{
+            display:none;
+        }
+        form{
+            display:flex;
+            justify-content: center;
+            margin:0;
+        }
+        #navbarNav{
+            justify-content: flex-end;
+            .navbar-nav{  
+                .nav-item{ 
+                    color:$warning; 
+                    display:flex;
+                    width:100%;
+                    justify-content: end;
+                    padding-top:0.3rem;                                
+                    button{    
+                        color:$warning; 
+                        margin-right:1rem;
+                        span{
+                            display:block;
+                        }
+                    }
+                    a{
+                        margin-right:1rem;
+                    }
+                    img:last-of-type{
+                        margin-right:1rem;
+                        padding-right:0;
+                    }  
+                    
+                }   
             }
         }
+        
     }
+   
 }

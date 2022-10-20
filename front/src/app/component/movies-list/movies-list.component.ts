@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 import { Movie } from 'src/app/model/movie';
 import { MoviesService } from 'src/app/service/movies.service';
 
@@ -23,9 +23,12 @@ export class MoviesListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.moviesService
-      .getMovies()
-      .subscribe((datas) => (this.moviesList = datas));
+    this.moviesService.getMovies().subscribe((datas) => {
+        this.moviesList = datas;
+        let array = _.sortBy(this.moviesList, ['id'])
+        this.moviesList = array;
+        }
+      );
   }
 
   openModal(template: TemplateRef<any>, value: any, movie:any) {
@@ -40,17 +43,20 @@ export class MoviesListComponent implements OnInit {
     
   }
   deleteMovie(movie:Movie){
-    this.moviesService.deleteMovie(movie).subscribe(data=>{
-      this.route.navigate(["movies"])
-    });
+    this.moviesService.deleteMovie(movie).subscribe();
+    let array = _.remove(this.moviesList, function(n){
+      return n.name != movie.name;
+    })
+    this.moviesList = array;
   }
-  addMovie($event:any){
-    if(this.moviesList.indexOf($event.id) == -1){
-      this.moviesList.push($event);
-    }else{
-      
-    }
-    
-    console.log($event);
+  addMovie(movie:Movie){
+    const index = this.moviesList.findIndex(movieFromArray => movieFromArray.id == movie.id);
+    console.log(index);
+   if(index != -1){
+    this.moviesList[index] = movie;
+   }else{
+    console.log("test")
+    this.moviesList.push(movie);
+   }  
   }
 }

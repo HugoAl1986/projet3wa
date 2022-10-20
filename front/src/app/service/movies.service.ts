@@ -26,8 +26,6 @@ export class MoviesService {
   }
 
   saveMovie(movie: Movie): Observable<Movie> {
-    this.getToken();
-    console.log(movie);
     return this.http.post<Movie>(this.moviesUrl + '/savemovie', movie);
   }
 

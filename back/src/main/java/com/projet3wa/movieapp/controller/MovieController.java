@@ -19,7 +19,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/movies")
 @CrossOrigin(origins = "*")
-public class ControllerMovie {
+public class MovieController {
 
     @Autowired
     private MovieService movieService;
