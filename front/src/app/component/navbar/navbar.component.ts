@@ -17,10 +17,6 @@ export class NavbarComponent implements OnInit{
   langUs:string = "us";
   opacityFr:string="0.5";
   opacityUs:string = "0.5";
-  newNav:boolean = true;
-  displayItem:boolean = true;
-  displayIconClose:boolean = false;
-  displayIconSearch:boolean = true;
 
   modalRef?: BsModalRef;
 
@@ -36,7 +32,6 @@ export class NavbarComponent implements OnInit{
   } 
 
   ngOnInit(): void {
-    console.log("oninit");
     this.userService.isAuthenticated.subscribe(data => this.authentication = data);
     this.userService.token.subscribe(data => console.log(data));
   }
@@ -46,8 +41,7 @@ export class NavbarComponent implements OnInit{
   this.service.emitEvent(part);
   }
 
-  unsubscribe(){
-    console.log("unsbscribe");
+  unsubscribe():void{
     this.userService.token.next("none");
     this.userService.isAuthenticated.next("none");
     this.userService.isAuthenticated.subscribe(data=>this.authentication = data);
@@ -64,25 +58,6 @@ export class NavbarComponent implements OnInit{
       this.opacityFr = "0.5";
     }
   }
-
-   
-  displaySmall(){
-    if(screen.width < 576){
-      this.newNav = !this.newNav;
-      this.displayItem = !this.displayItem;
-      this.displayIconClose = !this.displayIconClose
-      this.displayIconSearch = !this.displayIconSearch;
-    }
-
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
-    if(window.innerWidth < 576){
-      this.newNav = true;
-    }
-  }
- 
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);

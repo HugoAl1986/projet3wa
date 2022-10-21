@@ -1,6 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Movie} from '../model/movie';
-import { Response } from '../model/response';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { UserService } from './user.service';
