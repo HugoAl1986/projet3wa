@@ -5,7 +5,6 @@ import * as _ from 'lodash';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { DetailsMovieComponent } from 'src/app/component/details-movie/details-movie.component';
 
-import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'movies',
@@ -13,7 +12,6 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent implements OnInit {
-  authentication: string = 'none';
   bsModalRef?: BsModalRef;
   movieList: Movie[];
   searchMovie: any;
@@ -25,8 +23,7 @@ export class MoviesComponent implements OnInit {
 
   constructor(
     private service: MoviesService,
-    private modalService: BsModalService,
-    private userService: UserService
+    private modalService: BsModalService
   ) {}
 
   ngOnInit(): void {
@@ -35,12 +32,9 @@ export class MoviesComponent implements OnInit {
       let array = _.sortBy(this.movieList,['id']);
       this.movieList = array;
     });
-    this.service.eventSearchMovie.subscribe(
-      (data) => (this.searchMovie = data)
+    this.service.searchMovie.subscribe(
+      (data:any) => (this.searchMovie = data)
     );
-    this.userService
-      .checkIfIsauthenticated()
-      .subscribe((data) => (this.authentication = data));
   }
 
   openModalWithComponent(data: Movie) {

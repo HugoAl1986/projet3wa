@@ -65,9 +65,6 @@ public class UserContoller {
             final UserDetails userDetails = applicationUserDetailService.loadUserByUsername(request.getEmail());
             final String token = jwtUtil.generateToken(userDetails, user.getRole());
             return ResponseEntity.ok(new JwtResponse(token));
-            //}catch(AuthenticationException ex){
-            //       throw new RuntimeException("Credentials are not good !!!");
-            // }
             }catch(RuntimeException ex){
                 throw new RuntimeException("Bad credentials !!!");
             }

@@ -1,6 +1,8 @@
 package com.projet3wa.movieapp.controller;
 
 
+import com.projet3wa.movieapp.exceptions.ObjectExistsInDatabase;
+import com.projet3wa.movieapp.exceptions.ObjectInvalidArgument;
 import com.projet3wa.movieapp.model.Category;
 import com.projet3wa.movieapp.model.Movie;
 import com.projet3wa.movieapp.repository.CategoryRepository;
@@ -9,7 +11,9 @@ import com.projet3wa.movieapp.service.CategoryService;
 import com.projet3wa.movieapp.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,24 +37,17 @@ public class MovieController {
     @Autowired
     private CategoryService categoryService;
     @PostMapping(value = "/savemovie")
-    public ResponseEntity<Movie> create(@RequestBody Movie movie) {
-        if(movieService.checkExistingMovie(movie)){
-            throw new RuntimeException("Movie exists in DB !!");
-        }else{
+    public ResponseEntity<Movie> create(@RequestBody Movie movie) throws ObjectExistsInDatabase {
             Movie movieCreated = movieService.saveMovie(movie);
             return new ResponseEntity<>(movieCreated, HttpStatus.CREATED);
-        }
     }
 
     @PostMapping(value = "/savecategory")
-    public ResponseEntity<Category> createCategory(@RequestBody Category category){
-        if(categoryService.checkIfExistingCategory(category.getName())){
-            throw new RuntimeException("category exist in DB !!!");
-        }else{
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) throws ObjectExistsInDatabase, ObjectInvalidArgument {
             Category newCat = categoryService.saveCategory(category);
             return new ResponseEntity<>(newCat, HttpStatus.CREATED);
         }
-    }
+
 
     @GetMapping()
     public ResponseEntity<List<Movie>> getMovies() {
@@ -59,7 +56,7 @@ public class MovieController {
     }
 
     @PutMapping(value = "/linkcattomovies/{categories}/{movie}")
-    public ResponseEntity<Movie> linkCatToMovie(@PathVariable String[] categories, @PathVariable String movie){
+    public ResponseEntity<Movie> linkCatToMovie(@PathVariable String[] categories, @PathVariable String movie) throws ObjectExistsInDatabase, ObjectInvalidArgument {
         // get movie from DB
         Movie movieFromDb = movieService.findMovieByName(movie);
         // transform String[] to set
@@ -74,7 +71,7 @@ public class MovieController {
     }
 
     @PutMapping(value = "/putmovie/{categories}/{idMovie}")
-    public ResponseEntity<Movie> putMovie(@RequestBody Movie newMovie, @PathVariable String[] categories, @PathVariable Long idMovie){
+    public ResponseEntity<Movie> putMovie(@RequestBody Movie newMovie, @PathVariable String[] categories, @PathVariable Long idMovie) throws ObjectExistsInDatabase, ObjectInvalidArgument {
         // transform String[] to set
         Set<Category>  set = categoryService.stringToSet(categories);
         // add set from existin

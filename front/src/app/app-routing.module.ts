@@ -9,6 +9,7 @@ const routes: Routes = [
    {path: '', redirectTo:'movies', pathMatch:'full'},
    {path:'movies', component:MoviesComponent},
    {path:'dashboard', component:DashboardComponent, canActivate: [DashboardAccessService]},
+   {path: '**', redirectTo: 'movies'}
    
 ];
 

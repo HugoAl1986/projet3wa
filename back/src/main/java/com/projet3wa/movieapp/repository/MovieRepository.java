@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface MovieRepository extends CrudRepository<Movie,Long> {
     @Override
     <S extends Movie> S save(S entity);
+
     Optional<Movie> findByName(String name);
 
     @Override

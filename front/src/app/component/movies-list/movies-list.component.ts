@@ -19,44 +19,45 @@ export class MoviesListComponent implements OnInit {
 
   modalRef?: BsModalRef;
 
-  constructor(private moviesService: MoviesService, private modalService: BsModalService, private route: Router
+  constructor(
+    private moviesService: MoviesService,
+    private modalService: BsModalService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
     this.moviesService.getMovies().subscribe((datas) => {
-        this.moviesList = datas;
-        let array = _.sortBy(this.moviesList, ['id'])
-        this.moviesList = array;
-        }
-      );
+      this.moviesList = datas;
+      let array = _.sortBy(this.moviesList, ['id']);
+      this.moviesList = array;
+    });
   }
 
-  openModal(template: TemplateRef<any>, value: any, movie:any) {
-    if(value == "createMovie"){
+  openModal(template: TemplateRef<any>, value: any, movie: any) {
+    if (value == 'createMovie') {
       this.newMovie = new Movie();
       this.title = 'Create movie';
-    }else{
-      this.title = "Modify movie";
+    } else {
+      this.title = 'Modify movie';
       this.newMovie = movie;
     }
     this.modalRef = this.modalService.show(template);
-    
   }
-  deleteMovie(movie:Movie){
+  deleteMovie(movie: Movie) {
     this.moviesService.deleteMovie(movie).subscribe();
-    let array = _.remove(this.moviesList, function(n){
+    let array = _.remove(this.moviesList, function (n) {
       return n.name != movie.name;
-    })
+    });
     this.moviesList = array;
   }
-  addMovie(movie:Movie){
-    const index = this.moviesList.findIndex(movieFromArray => movieFromArray.id == movie.id);
-    console.log(index);
-   if(index != -1){
-    this.moviesList[index] = movie;
-   }else{
-    console.log("test")
-    this.moviesList.push(movie);
-   }  
+  addMovie(movie: Movie) {
+    const index = this.moviesList.findIndex(
+      (movieFromArray) => movieFromArray.id == movie.id
+    );
+    if (index != -1) {
+      this.moviesList[index] = movie;
+    } else {
+      this.moviesList.push(movie);
+    }
   }
 }

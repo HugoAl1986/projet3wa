@@ -1,10 +1,14 @@
 package com.projet3wa.movieapp.service;
 
+import com.projet3wa.movieapp.exceptions.ObjectExistsInDatabase;
 import com.projet3wa.movieapp.model.Category;
 import com.projet3wa.movieapp.model.Movie;
 import com.projet3wa.movieapp.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -19,8 +23,13 @@ public class MovieService {
     @Autowired CategoryService categoryService;
 
 
-    public Movie saveMovie(Movie movie){
-        return movieRepository.save(movie);
+    public Movie saveMovie(Movie movie) throws ObjectExistsInDatabase {
+       if(checkExistingMovie(movie)){
+            throw new ObjectExistsInDatabase("Movie exists in DB");
+        }else{
+           return movieRepository.save(movie);
+       }
+
     }
 
     public boolean checkExistingMovie(Movie movie){
@@ -32,7 +41,7 @@ public class MovieService {
         return (List<Movie>) movieRepository.findAll();
     }
 
-    public Movie putMovie(Movie movie, long id, Set<Category> set){
+    public Movie putMovie(Movie movie, long id, Set<Category> set) throws ObjectExistsInDatabase {
 
        Movie existingMovie = movieRepository.findById(id).get();
        existingMovie.setName(movie.getName());

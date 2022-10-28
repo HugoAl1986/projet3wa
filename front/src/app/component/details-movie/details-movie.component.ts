@@ -31,7 +31,8 @@ export class DetailsMovieComponent implements OnInit {
   @Input() title: string;
   arrayCat: Array<Category> = [];
   array:Array<string>;
-  arrayModify:Array<string> = []
+  arrayModify:Array<string> = [];
+  error:boolean = false;
 
   constructor(public bsModalRef: BsModalRef,private service: MoviesService,private fb: FormBuilder,private route:Router
   ) {
@@ -55,30 +56,25 @@ export class DetailsMovieComponent implements OnInit {
       for(let i =0; i < this.movie.categories.length; i++){
         this.arrayModify.push(this.movie.categories[i].name);  
         this.array.push(this.movie.categories[i].name);
-      }
-     
-      
-    }
-  
-    
+      }  
+    }  
   }
 
   onSubmit() {
+   
     if (this.title == 'Create movie') {
       console.log(this.array)
       this.service.saveMovie(this.profileForm.value).subscribe((data:Movie) => {   
       this.profileForm.value.categories = this.array;
       let movie = this.profileForm.value;
       this.service.saveMovieLinked(movie).subscribe(datas=>{
-        //this.route.navigate(["/movies"]);
-        this.newMovie.emit(datas);
+      this.newMovie.emit(datas);
       })
      });     
-    }else{
+    }else if(this.title == 'Modify movie'){
       this.profileForm.value.categories = this.array;
       this.service.updateMovie(this.profileForm.value).subscribe(data=>{
-        this.newMovie.emit(data);
-     // this.route.navigate(["/movies"]);
+      this.newMovie.emit(data);
       }
     );      
     }

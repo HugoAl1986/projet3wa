@@ -36,7 +36,7 @@
                 >
                 <div *ngIf="profileForm.controls['password'].invalid && (profileForm.controls['password'].dirty || profileForm.controls['password'].touched)">
                     <div *ngIf="profileForm.controls['password'].errors?.['minLength']?.['actualLength'] < 4" class="invalid-input">
-                        Password must be at least 5 characters long.
+                        Password must be at least 4 characters long.
                     </div>
                     <div *ngIf="submitted && profileForm.controls['password'].errors?.['required']" class="invalid-input">
                         Password is required

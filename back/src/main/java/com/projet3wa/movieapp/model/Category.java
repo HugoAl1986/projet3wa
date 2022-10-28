@@ -1,6 +1,10 @@
 package com.projet3wa.movieapp.model;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.projet3wa.movieapp.exceptions.MyDeserializer;
 import com.projet3wa.movieapp.other.CategoryName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +20,7 @@ import java.util.Set;
 @Entity
 @Table(name="category")
 @NoArgsConstructor
+@JsonDeserialize(using = MyDeserializer.class)
 public class Category {
 
 
@@ -24,7 +29,6 @@ public class Category {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
     @Column(name="name", nullable = false, unique = true)
     private CategoryName name;
 

@@ -1,8 +1,9 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Movie} from '../model/movie';
-import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { UserService } from './user.service';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { UserService } from './user.service';
 export class MoviesService {
   token: string;
   moviesUrl: string;
-  eventSearchMovie: EventEmitter<any> = new EventEmitter<any>();
+  searchMovie : any = new Subject();
 
   constructor(private http: HttpClient, private userService: UserService) {
     this.moviesUrl = 'http://localhost:8080/api/movies';
@@ -37,9 +38,6 @@ export class MoviesService {
     return this.http.put<Movie>(this.moviesUrl + '/linkcattomovies/' + datas + "/" + movie.name, null);
   }
 
-  emitEvent(data: any) {
-    this.eventSearchMovie.emit(data);
-  }
 
   updateMovie(movie: Movie):Observable<Movie> {
     const categories = movie.categories;

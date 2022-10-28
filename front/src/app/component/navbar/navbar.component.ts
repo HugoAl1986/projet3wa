@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit{
 
   @HostListener('keydown') onKeydown() { 
   let part = this.el.nativeElement.querySelector('.inputsearch').value;
-  this.service.emitEvent(part);
+  this.service.searchMovie.next(part);
   }
 
   unsubscribe():void{
