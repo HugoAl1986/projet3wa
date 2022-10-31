@@ -1,6 +1,7 @@
 package com.projet3wa.movieapp.service;
 
 import com.projet3wa.movieapp.exceptions.ObjectExistsInDatabase;
+import com.projet3wa.movieapp.exceptions.ObjectNotFound;
 import com.projet3wa.movieapp.model.Category;
 import com.projet3wa.movieapp.model.Movie;
 import com.projet3wa.movieapp.repository.MovieRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,6 +34,10 @@ public class MovieService {
 
     }
 
+    public Movie saveMovieLinked(Movie movie){
+        return movieRepository.save(movie);
+    }
+
     public boolean checkExistingMovie(Movie movie){
         Optional<Movie> foundMovie = movieRepository.findByName(movie.getName());
         return foundMovie.isPresent();
@@ -43,26 +49,34 @@ public class MovieService {
 
     public Movie putMovie(Movie movie, long id, Set<Category> set) throws ObjectExistsInDatabase {
 
-       Movie existingMovie = movieRepository.findById(id).get();
+       Movie existingMovie = findMovieById(id);
        existingMovie.setName(movie.getName());
        existingMovie.setYear(movie.getYear());
        existingMovie.setDuration(movie.getDuration());
        existingMovie.setIsAdult(movie.getIsAdult());
        existingMovie.setCategories(set);
-       return saveMovie(existingMovie);
+       return saveMovieLinked(existingMovie);
 
     }
 
     public void deleteMovie(long id){
-        Movie movie = movieRepository.findById(id).orElseThrow();
-        movieRepository.deleteById(id);
+        Movie movie = findMovieById(id);
+        movieRepository.delete(movie);
     }
 
     public Movie findMovieById(long id){
-        return movieRepository.findById(id).orElseThrow();
+        try{
+            return movieRepository.findById(id).get();
+        }catch(NoSuchElementException ex){
+            throw new ObjectNotFound("Movie Doesn't exists in DB !!");
+        }
     }
 
     public Movie findMovieByName(String nameMovie){
-        return  movieRepository.findByName(nameMovie).orElseThrow();
+        try{
+            return movieRepository.findByName(nameMovie).get();
+        }catch(NoSuchElementException ex){
+            throw new ObjectNotFound("Movie doesn't exists in DB !!");
+        }
     }
 }

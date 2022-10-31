@@ -1,5 +1,6 @@
 package com.projet3wa.movieapp.controller;
 
+import com.projet3wa.movieapp.exceptions.ObjectExistsInDatabase;
 import com.projet3wa.movieapp.model.User;
 
 import com.projet3wa.movieapp.repository.UserRepository;
@@ -33,8 +34,7 @@ public class UserContoller {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -44,34 +44,22 @@ public class UserContoller {
 
 
     @PostMapping(value = "/createuser")
-    public ResponseEntity<?> createUser(@RequestBody User user){
-        user.setRole();
-        User newUser;
-        try{
-            newUser = userService.saveUser(user);
-        }catch(RuntimeException ex){
-            return new ResponseEntity<>("Utilisateur non crée", HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> createUser(@RequestBody User user) throws ObjectExistsInDatabase {
+        User newUser = userService.saveUser(user);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<?> authenticate(@RequestBody JwtRequest request) throws Exception {
+    public ResponseEntity<?> authenticate(@RequestBody JwtRequest request){
 
-        User user;
-        try {
-            user = userRepository.findByEmail(request.getEmail());
-            authenticate(request.getEmail(), request.getPassword());
+            User user = userService.FindEmailForLogin(request.getEmail());
+            userService.authenticate(request.getEmail(), request.getPassword());
             final UserDetails userDetails = applicationUserDetailService.loadUserByUsername(request.getEmail());
             final String token = jwtUtil.generateToken(userDetails, user.getRole());
             return ResponseEntity.ok(new JwtResponse(token));
-            }catch(RuntimeException ex){
-                throw new RuntimeException("Bad credentials !!!");
-            }
+
     }
 
-    private void authenticate(String email, String password) throws Exception {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-    }
+
 
 }

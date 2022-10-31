@@ -66,7 +66,7 @@ public class MovieController {
         // add set to Movie
         movieFromDb.setCategories(set);
         // save movie to DB
-        Movie movieUpdated = movieService.saveMovie(movieFromDb);
+        Movie movieUpdated = movieService.saveMovieLinked(movieFromDb);
       return new ResponseEntity<>(movieUpdated, HttpStatus.CREATED);
     }
 
@@ -82,7 +82,7 @@ public class MovieController {
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<?> deleteMovie(@PathVariable Long id){
         movieService.deleteMovie(id);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Movie deleted",HttpStatus.OK);
     }
 
 

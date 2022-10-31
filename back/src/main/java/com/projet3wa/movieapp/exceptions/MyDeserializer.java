@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projet3wa.movieapp.model.Category;
 import com.projet3wa.movieapp.other.CategoryName;
 import com.projet3wa.movieapp.service.CategoryService;
@@ -26,6 +25,7 @@ public class MyDeserializer extends JsonDeserializer<Category> {
         String name = node.get("name").asText();
         CategoryName catName = categoryService.getEnumFromString(name);
         Category cat = new Category();
+        cat.setName(catName);
         return cat;
     }
 }
